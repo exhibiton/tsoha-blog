@@ -6,15 +6,16 @@ import { IRootReducer } from './types/redux/rootReducerTypes'
 
 export interface IAppProps {
   store: Store<IRootReducer, AnyAction>
+  routes: any
 }
 
 class App extends React.Component<IAppProps, {}> {
-  public render() {
+  render() {
     return (
       <Provider store={this.props.store}>
         <Router
           history={browserHistory}
-          // children={routes}
+          children={this.props.routes}
         />
       </Provider>
     )
