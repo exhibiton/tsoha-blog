@@ -1,6 +1,8 @@
+import { IHomeState } from '../../routes/Home/modules/HomeReducer'
 import { ILocationState } from '../../store/reducers/location-reducer'
 
 export interface IRootReducer {
+  home: IHomeState
   location: ILocationState
 }
 
