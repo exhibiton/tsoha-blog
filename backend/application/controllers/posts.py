@@ -14,7 +14,8 @@ def index():
     posts = Post.query.all()
     post_schema = PostSchema(many=True)
     result = post_schema.dump(posts)
-    return jsonify({'posts': result})
+    # I have no idea why Marshmallow is adding an empty dict into the dump.
+    return jsonify(result[0])
 
 
 @api.route('/posts/<int:pk>')
