@@ -1,8 +1,4 @@
-"""This is a simple example module.
-Change or delete this as you see fit.
-"""
 from flask import jsonify
-
 from application.controllers import api
 from application.models.post import Post
 from application.schemas.post import PostSchema

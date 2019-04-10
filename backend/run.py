@@ -1,6 +1,7 @@
 from application import app
 app.debug = True
 
+
 @app.route("/")
 def hello():
     return "Welcome to TSOHA API!"

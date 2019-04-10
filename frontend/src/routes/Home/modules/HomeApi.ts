@@ -9,13 +9,14 @@ export const getPosts = () => async (dispatch: Dispatch = null as any) => {
     await axios({
       method: 'GET',
       url: `${apiEndpoints.api}/posts`,
-    }).then(res => {
-      dispatch(fetchPostsFulfilled(res.data))
-    }).catch(error => {
-      dispatch(fetchPostsFailed())
-    });
-  }
-  catch (error) {
-    dispatch(fetchPostsFailed());
+    })
+      .then(res => {
+        dispatch(fetchPostsFulfilled(res.data))
+      })
+      .catch(error => {
+        dispatch(fetchPostsFailed())
+      })
+  } catch (error) {
+    dispatch(fetchPostsFailed())
   }
 }

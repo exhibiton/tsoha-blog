@@ -1,16 +1,15 @@
 from application import db
 
 
-class Post(db.Model):
-    __tablename__ = 'posts'
+class Comment(db.Model):
+    __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
                               onupdate=db.func.current_timestamp())
-    title = db.Column(db.Text, nullable=False)
     content = db.Column(db.Text)
-    comments = db.relationship('Comment', backref="post", lazy=False)
-    admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __init__(self, title, content):
         self.title = title
@@ -20,6 +19,10 @@ class Post(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def remove_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+
     @classmethod
-    def find_post_by_id(cls, _id):
-        return cls.query.filter_by(id=_id).first()
+    def find_comments_by_post_id(cls, post_id):
+        return cls.query.filter_by(post_id=post_id)
