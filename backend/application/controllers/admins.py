@@ -1,44 +1,44 @@
 from flask import make_response, jsonify, request
 from application.controllers import api
 from application.models.admin import Admin
-from application import db
+from application import bcrypt
 
 
-@api.route('/admin_auth', methods=['POST'])
-def admin_auth():
+@api.route('/admins/authenticate', methods=['POST'])
+def authenticate():
     data = request.args
     email = data['email']
     password = data['password']
-    admin = Admin.find_admin_by_email(email).first()
 
-    if not admin:
-        try:
-            admin = Admin(
-                email=email,
-                password=password
-            )
+    try:
+        admin = Admin.find_admin_by_email(email)
 
-            db.session.add(admin)
-            db.session.commit()
+        if admin and bcrypt.check_password_hash(admin.password, password):
+            auth_token = admin.encode_auth_token()
 
-            auth_token = admin.encode_auth_token(admin.id)
-            response_object = {
-                'status': 'success',
-                'message': 'Successfully signed up',
-                'auth_token': auth_token.decode()
-            }
-            return make_response(jsonify(response_object)), 201
-        except Exception as e:
+            if auth_token:
+                response_object = {
+                    'status': 'success',
+                    'message': 'Successfully logged in',
+                    'auth_token': auth_token.decode("utf-8")
+                }
+                return make_response(jsonify(response_object)), 200
+        elif admin and not bcrypt.check_password_hash(admin.password, password):
             response_object = {
                 'status': 'fail',
-                'message': 'Could not create account'
+                'message': 'Invalid password.'
             }
-
-            return make_response(jsonify(response_object)), 401
-    else:
+            return make_response(jsonify(response_object)), 403
+        else:
+            response_object = {
+                'status': 'fail',
+                'message': 'Admin does not exist.'
+            }
+            return make_response(jsonify(response_object)), 404
+    except Exception as e:
         response_object = {
             'status': 'fail',
-            'message': 'User already exists'
+            'message': 'Could not sign in',
+            'error': ','.join(e.args)
         }
-        return make_response(jsonify(response_object)), 202
-
+        return make_response(jsonify(response_object)), 401

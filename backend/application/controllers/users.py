@@ -4,6 +4,7 @@ from application.models.user import User
 from application import db
 from application import bcrypt
 
+
 @api.route('/users/sign_in', methods=['POST'])
 def sign_in():
     data = request.args
@@ -38,7 +39,7 @@ def sign_in():
     except Exception as e:
         response_object = {
             'status': 'fail',
-            'message': 'Could not create account',
+            'message': 'Could not sign in',
             'error': ','.join(e.args)
         }
         return make_response(jsonify(response_object)), 401

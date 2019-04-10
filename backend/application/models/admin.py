@@ -1,6 +1,7 @@
-from application import db, app
+from application import db, app, bcrypt
 import jwt
 import datetime
+
 
 class Admin(db.Model):
     __tablename__ = 'admins'
@@ -10,9 +11,10 @@ class Admin(db.Model):
     password = db.Column(db.String(255), nullable=False)
     comments = db.relationship('Post', backref="admin", lazy=False)
 
-    def __init__(self, email, password):
+    def __init__(self, email, password, username):
         self.email = email
-        self.password = password
+        self.username = username
+        self.password = bcrypt.generate_password_hash(password)
 
     def save_to_db(self):
         db.session.add(self)
