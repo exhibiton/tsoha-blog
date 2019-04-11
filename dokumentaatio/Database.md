@@ -25,3 +25,7 @@ Comments are posted on each Post by signed-in users.
 [User]1 - *[Comment]
 [Post]1 - *[Comment]
 ```
+
+#### UML Diagram
+
+![Database](https://github.com/exhibiton/tsoha-blog/blob/master/dokumentaatio/db_uml.png)
