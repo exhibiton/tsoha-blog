@@ -1,5 +1,5 @@
 from application import db
-
+import copy
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -15,6 +15,11 @@ class Post(db.Model):
     def __init__(self, title, content):
         self.title = title
         self.content = content
+
+    def __getitem__(self, idx):
+        p = copy.copy(self)
+        p.title = p.title.split("`")[idx]
+        return p
 
     def save_to_db(self):
         db.session.add(self)

@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, make_response
 from application.controllers import api
 from application.models.post import Post
 from application.schemas.post import PostSchema
@@ -14,12 +14,15 @@ def index():
     return jsonify(result[0])
 
 
-@api.route('/posts/<int:pk>')
-def get(pk):
+@api.route('/posts/<id>', methods=['GET'])
+def get(id):
     try:
-        post = Post.query.get(pk)
+        post = Post.find_post_by_id(id)
+        if post:
+            post_schema = PostSchema(many=True)
+            post_result = post_schema.dump(post)
+            return make_response(jsonify({'post': post_result})), 200
+        else:
+            return make_response({'message': 'Post could not be found.'}), 400
     except IntegrityError:
-        return jsonify({'message': 'Post could not be found.'}), 400
-    post_schema = PostSchema(many=True)
-    post_result = post_schema.dump(post)
-    return jsonify({'post': post_result})
+        return make_response({'message': 'Post could not be found.'}), 400
