@@ -21,7 +21,7 @@ def get(id):
         if post:
             post_schema = PostSchema(many=True)
             post_result = post_schema.dump(post)
-            return make_response(jsonify({'post': post_result})), 200
+            return make_response(jsonify({'post': post_result[0]})), 200
         else:
             return make_response({'message': 'Post could not be found.'}), 400
     except IntegrityError:
