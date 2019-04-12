@@ -12,9 +12,10 @@ class Post(db.Model):
     comments = db.relationship('Comment', backref="post", lazy=False)
     admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'))
 
-    def __init__(self, title, content):
+    def __init__(self, title, content, admin_id):
         self.title = title
         self.content = content
+        self.admin_id = admin_id
 
     def __getitem__(self, idx):
         p = copy.copy(self)
