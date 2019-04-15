@@ -3,6 +3,9 @@ from application.controllers import api
 from application.models.user import User
 from application import db
 from application import bcrypt
+from flask_jwt_extended import (
+    create_access_token
+)
 
 
 @api.route('/users/sign_in', methods=['POST'])
@@ -15,13 +18,18 @@ def sign_in():
         user = User.find_user_by_email(email)
 
         if user and bcrypt.check_password_hash(user.password, password):
-            auth_token = user.encode_auth_token()
+            identity = {
+                'email': user.email,
+                'name': user.username,
+                'id': user.id
+            }
+            access_token = create_access_token(identity=identity)
 
-            if auth_token:
+            if access_token:
                 response_object = {
                     'status': 'success',
                     'message': 'Successfully logged in',
-                    'auth_token': auth_token.decode("utf-8")
+                    'auth_token': access_token
                 }
                 return make_response(jsonify(response_object)), 200
         elif user and not bcrypt.check_password_hash(user.password, password):
@@ -63,11 +71,16 @@ def sign_up():
             db.session.add(user)
             db.session.commit()
 
-            auth_token = user.encode_auth_token()
+            identity = {
+                'email': user.email,
+                'name': user.username
+            }
+
+            access_token = create_access_token(identity=identity)
             response_object = {
                 'status': 'success',
                 'message': 'Successfully signed up',
-                'auth_token': auth_token.decode("utf-8")
+                'auth_token': access_token
             }
             return make_response(jsonify(response_object)), 201
         except Exception as e:
@@ -84,4 +97,3 @@ def sign_up():
             'message': 'User already exists'
         }
         return make_response(jsonify(response_object)), 202
-

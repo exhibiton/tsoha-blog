@@ -12,6 +12,7 @@ CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////Users/jesseheikkila/Projects/tsoha/backend/tsoha-database.db"
 app.config["SQLALCHEMY_ECHO"] = True
 app.config["JWT_SECRET"] = os.environ.get('JWT_SECRET', default="very-secret-key")
+app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET_KEY', default="very-secret-key")
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
 
 bcrypt = Bcrypt(app)

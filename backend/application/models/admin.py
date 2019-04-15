@@ -1,6 +1,4 @@
-from application import db, app, bcrypt
-import jwt
-import datetime
+from application import db, bcrypt
 
 
 class Admin(db.Model):
@@ -24,30 +22,3 @@ class Admin(db.Model):
     def find_admin_by_email(cls, email):
         return cls.query.filter_by(email=email).first()
 
-    def encode_auth_token(self):
-        try:
-            payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1),
-                'iat': datetime.datetime.utcnow(),
-                'sub': {
-                    'email': self.email,
-                    'name': self.username
-                }
-            }
-            return jwt.encode(
-                payload,
-                app.config.get('JWT_SECRET'),
-                algorithm='HS256'
-            )
-        except Exception as e:
-            return e
-
-    @staticmethod
-    def decode_auth_token(auth_token):
-        try:
-            payload = jwt.decode(auth_token, app.config.get('JWT_SECRET'))
-            return payload['sub']
-        except jwt.ExpiredSignatureError:
-            return 'Signature expired. Please log in again.'
-        except jwt.InvalidTokenError:
-            return 'Invalid token. Please log in again.'

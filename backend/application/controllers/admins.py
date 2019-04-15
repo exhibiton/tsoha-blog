@@ -2,6 +2,9 @@ from flask import make_response, jsonify, request
 from application.controllers import api
 from application.models.admin import Admin
 from application import bcrypt
+from flask_jwt_extended import (
+    create_access_token
+)
 
 
 @api.route('/admins/authenticate', methods=['POST'])
@@ -14,13 +17,19 @@ def authenticate():
         admin = Admin.find_admin_by_email(email)
 
         if admin and bcrypt.check_password_hash(admin.password, password):
-            auth_token = admin.encode_auth_token()
 
-            if auth_token:
+            identity = {
+                'email': admin.email,
+                'name': admin.username,
+                'id': admin.id
+            }
+            access_token = create_access_token(identity=identity)
+
+            if access_token:
                 response_object = {
                     'status': 'success',
                     'message': 'Successfully logged in',
-                    'auth_token': auth_token.decode("utf-8")
+                    'auth_token': access_token
                 }
                 return make_response(jsonify(response_object)), 200
         elif admin and not bcrypt.check_password_hash(admin.password, password):
