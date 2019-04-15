@@ -1,4 +1,5 @@
 from application import db
+import copy
 
 
 class Comment(db.Model):
@@ -11,9 +12,15 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-    def __init__(self, title, content):
-        self.title = title
+    def __init__(self, content, post_id, user_id):
         self.content = content
+        self.post_id = post_id
+        self.user_id = user_id
+
+    def __getitem__(self, idx):
+        c = copy.copy(self)
+        c.title = c.content.split("`")[idx]
+        return c
 
     def save_to_db(self):
         db.session.add(self)
@@ -26,3 +33,7 @@ class Comment(db.Model):
     @classmethod
     def find_comments_by_post_id(cls, post_id):
         return cls.query.filter_by(post_id=post_id)
+
+    @classmethod
+    def find_comments_by_comment_id(cls, _id):
+        return cls.query.filter_by(id=_id).first()
