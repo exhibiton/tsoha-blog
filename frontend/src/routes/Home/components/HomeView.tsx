@@ -41,9 +41,11 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
                   <p className="post-title">{posts[0].title}</p>
                   <div className="post-info">
                     <p className="post-details-text">{posts[0].title}</p>
-                    <p className="post-details-text">{posts[0].title}</p>
+                    <p className="post-details-text">{posts[0].admin.username}</p>
                   </div>
-                  <p className="post-text">{posts[0].content}</p>
+                  <p className="post-text">
+                    {posts[0].content.length > 200 ? posts[0].content.substring(0, 199) : posts[0].content}
+                  </p>
                 </div>
                 <div className="read-more">Read More</div>
               </div>
@@ -55,7 +57,9 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
                     <p className="post-details-text">{posts[1].title}</p>
                     <p className="post-details-text">{posts[1].title}</p>
                   </div>
-                  <p className="post-text">{posts[1].content}</p>
+                  <p className="post-text">
+                    {posts[1].content.length > 100 ? posts[1].content.substring(0, 99) : posts[1].content}
+                  </p>
                 </div>
                 <div className="read-more">Read More</div>
               </div>
@@ -66,7 +70,9 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
                   <img src={otherImg} />
                   <div className="post">
                     <p>{post.title}</p>
-                    <p>{post.content}</p>
+                    <p className="post-text">
+                      {post.content.length > 100 ? post.content.substring(0, 99) : post.content}
+                    </p>
                   </div>
                   <div className="read-more">Read More</div>
                 </div>
@@ -81,17 +87,23 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
         <div>
           <div className="first-post">
             <p>{posts[0].title}</p>
-            <p>{posts[0].content}</p>
+            <p className="post-text">
+              {posts[0].content.length > 200 ? posts[0].content.substring(0, 199) : posts[0].content}
+            </p>
           </div>
           <div className="second-post">
             <p>{posts[1].title}</p>
-            <p>{posts[1].content}</p>
+            <p className="post-text">
+              {posts[1].content.length > 100 ? posts[1].content.substring(0, 99) : posts[1].content}
+            </p>
           </div>
           <div>
             {lastPosts.map((post, i) => (
               <div key={i}>
                 <p>{post.title}</p>
-                <p>{post.content}</p>
+                <p className="post-text">
+                  {post.content.length > 100 ? post.content.substring(0, 99) : post.content}
+                </p>
               </div>
             ))}
           </div>
@@ -102,15 +114,19 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
         <div>
           <div className="first-post">
             <p>{posts[0].title}</p>
-            <p>{posts[0].content}</p>
+            <p className="post-text">
+              {posts[0].content.length > 200 ? posts[0].content.substring(0, 199) : posts[0].content}
+            </p>
           </div>
           <div className="second-post">
             <p>{posts[1].title}</p>
-            <p>{posts[1].content}</p>
+            <p className="post-text">
+              {posts[1].content.length > 100 ? posts[1].content.substring(0, 99) : posts[1].content}
+            </p>
           </div>
-          <div className="second-post">
+          <div className="post">
             <p>{posts[2].title}</p>
-            <p>{posts[2].content}</p>
+            {posts[2].content.length > 100 ? posts[2].content.substring(0, 99) : posts[2].content}
           </div>
         </div>
       )
@@ -119,11 +135,15 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
         <div>
           <div className="first-post">
             <p>{posts[0].title}</p>
-            <p>{posts[0].content}</p>
+            <p className="post-text">
+              {posts[0].content.length > 200 ? posts[0].content.substring(0, 199) : posts[0].content}
+            </p>
           </div>
           <div className="second-post">
             <p>{posts[1].title}</p>
-            <p>{posts[1].content}</p>
+            <p className="post-text">
+              {posts[1].content.length > 100 ? posts[1].content.substring(0, 99) : posts[1].content}
+            </p>
           </div>
         </div>
       )
@@ -132,7 +152,9 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
         <div>
           <div className="first-post">
             <p>{posts[0].title}</p>
-            <p>{posts[0].content}</p>
+            <p className="post-text">
+              {posts[0].content.length > 200 ? posts[0].content.substring(0, 199) : posts[0].content}
+            </p>
           </div>
         </div>
       )
