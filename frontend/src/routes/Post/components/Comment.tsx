@@ -1,5 +1,6 @@
 import React from 'react'
 import { IComment } from '../../../types/CommentTypes'
+import './Comment.css'
 
 interface ICommentProps {
   comment: IComment
@@ -9,9 +10,13 @@ const Comment: React.SFC<ICommentProps> = props => {
   const { comment } = props
 
   return (
-    <div>
+    <div className="container-comment">
       <p>{comment.content}</p>
-      <p>{comment.user.username}</p>
+      <div className="comment-bottom">
+        <div className="comment-by">comment by:</div>
+        &nbsp;
+        <div className="comment-author">{comment.user.username}</div>
+      </div>
     </div>
   )
 }

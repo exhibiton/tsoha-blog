@@ -1,0 +1,81 @@
+.container-post {
+  margin-right: 14.702vw;
+  margin-left: 14.702vw;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 144px;
+  font-family: Geometria;
+  font-size: 48px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: var(--dark);
+  margin-bottom: 30px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-content {
+  margin-top: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Geometria;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.75;
+  letter-spacing: normal;
+  color: #222645;
+}
+
+.comment-section {
+  margin-left: 100px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 100px;
+  margin-bottom: 100px;
+}
+
+.comment-bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.comment-by {
+  font-family: Geometria;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--blue-grey);
+}
+
+.comment-author {
+  font-family: Geometria;
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--dark);
+}

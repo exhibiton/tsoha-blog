@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { IPost } from 'src/types/PostTypes'
+import postImg from '../../../assets/firstblog.jpg'
 import { ILocationState } from '../../../store/reducers/location-reducer'
 import { IRootReducer } from '../../../types/redux/rootReducerTypes'
 import { getPost } from '../modules/PostApi'
 import CommentList from './CommentList'
+import './PostView.css'
 
 interface IPostViewProps {
   getPost: (postId: string) => void
@@ -28,12 +30,17 @@ class PostView extends React.Component<IPostViewProps, {}> {
       return <div>Loading</div>
     } else {
       return (
-        <div>
-          <p>{post.title}</p>
-          <p>{post.content}</p>
-          <p>{post.admin.username}</p>
-          <p>{post.date_created}</p>
-          <CommentList comments={post.comments} />
+        <div className="container-post">
+          <div className="post-title">{post.title}</div>
+          <div className="image-container">
+            <img width="945" height="532" src={postImg} />
+          </div>
+          <div className="post-content">
+            <p>{post.content}</p>
+          </div>
+          <div className="comment-section">
+            <CommentList comments={post.comments} />
+          </div>
         </div>
       )
     }
