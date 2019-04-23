@@ -1,0 +1,62 @@
+@font-face {
+  font-family: 'Geometria';
+  src: url('./fonts/Geometria.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Geometria';
+  src: url('./fonts//GeometriaLight.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Geometria';
+  src: url('./fonts/GeometriaMedium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Geometria';
+  src: url('./fonts/GeometriaBold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+html {
+  font-family: 'Geometria', sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #fafcfe;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Color palette */
+
+:root {
+  --dark: #222546;
+  --pale-grey: #fafcfe;
+  --blue-grey: #78909c;
+  --dodger-blue: #3e91f9;
+}
+
+/* Text styles */
+
+.subtitle {
+  font-family: Geometria;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.69;
+  letter-spacing: 0.3px;
+  color: var(--blue-grey);
+}

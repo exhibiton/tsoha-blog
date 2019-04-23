@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Provider } from 'react-redux'
 import { browserHistory, Router } from 'react-router'
 import { AnyAction, Store } from 'redux'
+import './App.css'
 import { IRootReducer } from './types/redux/rootReducerTypes'
 
 export interface IAppProps {
@@ -13,10 +14,7 @@ class App extends React.Component<IAppProps, {}> {
   render() {
     return (
       <Provider store={this.props.store}>
-        <Router
-          history={browserHistory}
-          children={this.props.routes}
-        />
+        <Router history={browserHistory} children={this.props.routes} />
       </Provider>
     )
   }

@@ -1,5 +1,4 @@
-
-import { Hash, LocationKey, Pathname, Query, Search} from 'history'
+import { Hash, LocationKey, Pathname, Query, Search } from 'history'
 import { browserHistory } from 'react-router'
 
 // ------------------------------------
@@ -7,15 +6,15 @@ import { browserHistory } from 'react-router'
 // ------------------------------------
 export const LOCATION_CHANGE = 'LOCATION_CHANGE'
 export type LOCATION_CHANGE = typeof LOCATION_CHANGE
-export type Action = "POP" | "PUSH" | "REPLACE";
+export type Action = 'POP' | 'PUSH' | 'REPLACE'
 
 export interface ILocationState {
-  pathname: Pathname;
-  search: Search;
-  query: Query;
-  hash: Hash;
-  action: Action;
-  key: LocationKey;
+  pathname: Pathname
+  search: Search
+  query: Query
+  hash: Hash
+  action: Action
+  key: LocationKey
 }
 
 // ------------------------------------

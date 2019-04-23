@@ -1,0 +1,27 @@
+.container {
+  margin-left: 17.857vw;
+  margin-right: 17.857vw;
+  margin-top: 26px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login-button {
+  width: 88px;
+  height: 32px;
+  border-radius: 3px;
+  background-color: var(--dodger-blue);
+  font-family: Geometria;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -9,6 +9,7 @@ class PostSchema(Schema):
     id = fields.Int(dump_only=True)
     content = fields.Str(required=True)
     title = fields.Str(required=True)
+    date_created = fields.Str(required=True)
     admin = fields.Nested(AdminSchema, only=["username"])
     comments = fields.Nested(CommentSchema, many=True)
 
