@@ -1,15 +1,60 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import { logout } from '../api/auth-api'
 import logo from '../assets/logo.svg'
+import { IRootReducer } from '../types/redux/rootReducerTypes'
+import { IUser } from '../types/UserTypes'
 import './Header.css'
 
-const Header: React.SFC<{}> = () => (
-  <div className="container">
-    <Link to="/">
-      <img src={logo} />
-    </Link>
-    <div className="login-button">LOG IN</div>
-  </div>
-)
+interface IHeaderProps {
+  user?: IUser
+  logout: () => void
+}
 
-export default Header
+class Header extends React.Component<IHeaderProps, {}> {
+  render() {
+    const { user } = this.props
+    if (user) {
+      return (
+        <div className="container">
+          <Link to="/">
+            <img src={logo} />
+          </Link>
+          <div className="">Hi {user.name}</div>
+          <a href="/" onClick={this.props.logout}>
+            Logout
+          </a>
+        </div>
+      )
+    } else {
+      return (
+        <div className="container">
+          <Link to="/">
+            <img src={logo} />
+          </Link>
+          <div className="login-button">
+            <Link to="/sign_in">LOG IN</Link>
+          </div>
+        </div>
+      )
+    }
+  }
+}
+
+const mapStateToProps = (state: IRootReducer) => {
+  const { currentUser } = state.auth
+
+  return {
+    user: currentUser,
+  }
+}
+
+const mapDispatchToProps = {
+  logout,
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Header)

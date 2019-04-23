@@ -4,12 +4,12 @@ import AuthLayout from '../layouts/AuthLayout'
 import CoreLayout from '../layouts/PageLayout'
 import Home from './Home'
 import PostView from './Post'
+import SignIn from './SignIn'
 
 function redirectToLogin(nextState: any, replace: any) {
-  // Redirect SignUp to correct path if if you want a Sign Up form
-  if (!getToken() && nextState.location.pathname !== '/signup') {
+  if (!getToken() && nextState.location.pathname === '/users') {
     replace({
-      pathname: '/auth',
+      pathname: '/sign_in',
       state: { nextPathname: nextState.location.pathname },
     })
   }
@@ -23,7 +23,7 @@ function redirectToHome(nextState: any, replace: any) {
     PlainRoute objects to build route definitions.   */
 export const createRoutes = (store: any) => [
   {
-    childRoutes: [PostView],
+    childRoutes: [PostView, SignIn],
     component: CoreLayout,
     indexRoute: Home,
     onEnter: (nextState: any, replace: any) => redirectToLogin(nextState, replace),
@@ -33,7 +33,7 @@ export const createRoutes = (store: any) => [
     component: AuthLayout,
     indexRoute: Home,
     onEnter: redirectToHome,
-    path: '/auth',
+    path: '/sign_in',
   },
 ]
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically

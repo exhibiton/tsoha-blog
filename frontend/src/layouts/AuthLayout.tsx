@@ -1,6 +1,10 @@
 import React from 'react'
+import Header from 'src/components/Header'
 
 export const PageLayout: React.SFC<{}> = ({ children }) => (
-  <div className="children">{children}</div>
+  <div>
+    <Header />
+    <div className="children">{children}</div>
+  </div>
 )
-export default PageLayout;
+export default PageLayout
