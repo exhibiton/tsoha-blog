@@ -79,3 +79,7 @@
   letter-spacing: normal;
   color: var(--dark);
 }
+
+.arrow-container {
+  padding-left: 100px;
+}

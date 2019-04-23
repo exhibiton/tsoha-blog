@@ -114,7 +114,7 @@
   justify-content: space-between;
 }
 
-.post-title {
+.home-post-title {
   font-family: Geometria;
   font-size: 16px;
   font-weight: bold;
@@ -157,5 +157,40 @@
   font-stretch: normal;
   line-height: normal;
   letter-spacing: 0.3px;
+  color: #222645;
+  text-decoration: none;
+}
+
+.read-more-2 {
+  padding-left: 30px;
+  padding-bottom: 55px;
+  font-family: Geometria;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.3px;
+  color: #222645;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+  color: #222645;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #222645;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #222645;
+}
+
+a:active {
+  text-decoration: none;
   color: #222645;
 }

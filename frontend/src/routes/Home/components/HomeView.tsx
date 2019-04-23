@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import { IPost } from 'src/types/PostTypes'
 import firstImg from '../../../assets/firstblog.jpg'
 import otherImg from '../../../assets/result.jpg'
@@ -36,9 +37,12 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
           <div className="posts-container">
             <div className="first-row">
               <div className="first-card">
-                <img className="first-img" src={firstImg} />
+                <Link to={`/posts/${posts[0].id}`}>
+                  <img className="first-img" src={firstImg} />
+                </Link>
+
                 <div className="first-post">
-                  <p className="post-title">{posts[0].title}</p>
+                  <p className="home-post">{posts[0].title}</p>
                   <div className="post-info">
                     <p className="post-details-text">{posts[0].title}</p>
                     <p className="post-details-text">{posts[0].admin.username}</p>
@@ -47,12 +51,17 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
                     {posts[0].content.length > 200 ? posts[0].content.substring(0, 199) : posts[0].content}
                   </p>
                 </div>
-                <div className="read-more">Read More</div>
+                <div className="read-more">
+                  <Link to={`/posts/${posts[0].id}`}>Read More</Link>
+                </div>
               </div>
               <div className="second-card">
-                <img className="second-img" src={secondImg} />
+                <Link to={`/posts/${posts[1].id}`}>
+                  <img className="second-img" src={secondImg} />
+                </Link>
+
                 <div className="second-post">
-                  <p className="post-title">{posts[1].title}</p>
+                  <p className="home-post">{posts[1].title}</p>
                   <div className="post-info">
                     <p className="post-details-text">{posts[1].title}</p>
                     <p className="post-details-text">{posts[1].title}</p>
@@ -61,20 +70,28 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
                     {posts[1].content.length > 100 ? posts[1].content.substring(0, 99) : posts[1].content}
                   </p>
                 </div>
-                <div className="read-more">Read More</div>
+                <div className="read-more">
+                  <Link to={`/posts/${posts[1].id}`}>Read More</Link>
+                </div>
               </div>
             </div>
             <div className="second-row">
               {lastPosts.map((post, i) => (
                 <div key={i} className="card">
-                  <img src={otherImg} />
+                  <div>
+                    <Link to={`/posts/${post.id}`}>
+                      <img width="340" src={otherImg} />
+                    </Link>
+                  </div>
                   <div className="post">
                     <p>{post.title}</p>
                     <p className="post-text">
                       {post.content.length > 100 ? post.content.substring(0, 99) : post.content}
                     </p>
                   </div>
-                  <div className="read-more">Read More</div>
+                  <div className="read-more">
+                    <Link to={`/posts/${post.id}`}>Read More</Link>
+                  </div>
                 </div>
               ))}
             </div>
