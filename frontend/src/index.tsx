@@ -10,5 +10,5 @@ const store = createStore(window.__INITIAL_STATE__)
 // tslint:disable-next-line:no-var-requires
 const routes = require('./routes/index').default(store)
 
-ReactDOM.render(<App store={store} routes={routes} />, MOUNT_NODE)
+ReactDOM.render(<App store={store.store} persistor={store.persistor} routes={routes} />, MOUNT_NODE)
 registerServiceWorker()
