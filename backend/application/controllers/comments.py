@@ -17,6 +17,38 @@ def comments_index():
     return jsonify(result[0])
 
 
+@api.route('/comments/<pk>', methods=['GET'])
+@jwt_required
+def comment_get(pk):
+    current_user = get_jwt_identity()
+    try:
+        comment = Comment.find_comments_by_comment_id(pk)
+        if comment:
+            if comment.user_id == current_user['id']:
+                comment_schema = CommentSchema()
+                comment_result = comment_schema.dump(comment)
+                return make_response(jsonify(comment_result[0])), 200
+            else:
+                response_object = {
+                    'status': 'fail',
+                    'message': 'Not authorized to edit this comment',
+                }
+                return make_response(jsonify(response_object)), 403
+        else:
+            response_object = {
+                'status': 'fail',
+                'message': 'Could not find comment',
+            }
+            return make_response(jsonify(response_object)), 404
+    except Exception as e:
+        response_object = {
+            'status': 'fail',
+            'message': 'Could not get comment',
+            'error': ','.join(e.args)
+        }
+        return make_response(jsonify(response_object)), 500
+
+
 @api.route('/comments', methods=['POST'])
 @jwt_required
 def comments_create():
