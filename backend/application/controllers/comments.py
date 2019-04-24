@@ -55,8 +55,8 @@ def comment_get(pk):
 def comments_create():
     current_user = get_jwt_identity()
 
-    data = request.args
-    content = data['content']
+    data = json.loads(request.data)
+    content = data['content']['content']
     post_id = data['post_id']
     user_id = current_user['id']
 
@@ -70,10 +70,13 @@ def comments_create():
         db.session.add(comment)
         db.session.commit()
 
+        comment_schema = CommentSchema()
+        comment_result = comment_schema.dump(comment)
+
         response_object = {
             'status': 'success',
             'message': 'Successfully created a Comment',
-            'post_id': comment.id
+            'comment': comment_result[0]
         }
         return make_response(jsonify(response_object)), 201
     except Exception as e:

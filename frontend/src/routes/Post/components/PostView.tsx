@@ -5,6 +5,7 @@ import { IPost } from 'src/types/PostTypes'
 import backArrow from '../../../assets/back-arrow.svg'
 import postImg from '../../../assets/firstblog.jpg'
 import { ILocationState } from '../../../store/reducers/location-reducer'
+import { IComment } from '../../../types/CommentTypes'
 import { IRootReducer } from '../../../types/redux/rootReducerTypes'
 import { IUser } from '../../../types/UserTypes'
 import { getPost } from '../modules/PostApi'
@@ -16,6 +17,7 @@ interface IPostViewProps {
   getPost: (postId: string) => void
   isLoading: boolean
   post: IPost
+  comments?: IComment[]
   location: ILocationState
   params: {
     id: string
@@ -28,7 +30,7 @@ class PostView extends React.Component<IPostViewProps, {}> {
   }
 
   render() {
-    const { currentUser, isLoading, post } = this.props
+    const { comments, currentUser, isLoading, post } = this.props
 
     if (isLoading || !post) {
       return <div>Loading</div>
@@ -48,7 +50,7 @@ class PostView extends React.Component<IPostViewProps, {}> {
             <p>{post.content}</p>
           </div>
           <div className="comment-section">
-            <CommentList currentUser={currentUser} comments={post.comments} />
+            <CommentList currentUser={currentUser} comments={comments} />
           </div>
         </div>
       )
@@ -57,10 +59,11 @@ class PostView extends React.Component<IPostViewProps, {}> {
 }
 
 const mapStateToProps = (state: IRootReducer) => {
-  const { post, isLoading } = state.post
+  const { comments, post, isLoading } = state.post
   const { currentUser } = state.auth
 
   return {
+    comments,
     currentUser,
     isLoading,
     post,

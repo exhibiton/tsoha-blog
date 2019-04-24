@@ -22,7 +22,7 @@ const initialState: ICommentState = {
   isLoading: false,
 }
 
-export default function PostStateReducer(
+export default function CommentEditStateReducer(
   state: ICommentState = initialState,
   action: IAction = {},
 ): ICommentState {
