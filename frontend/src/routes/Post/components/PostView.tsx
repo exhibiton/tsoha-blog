@@ -6,11 +6,13 @@ import backArrow from '../../../assets/back-arrow.svg'
 import postImg from '../../../assets/firstblog.jpg'
 import { ILocationState } from '../../../store/reducers/location-reducer'
 import { IRootReducer } from '../../../types/redux/rootReducerTypes'
+import { IUser } from '../../../types/UserTypes'
 import { getPost } from '../modules/PostApi'
 import CommentList from './CommentList'
 import './PostView.css'
 
 interface IPostViewProps {
+  currentUser?: IUser
   getPost: (postId: string) => void
   isLoading: boolean
   post: IPost
@@ -26,7 +28,7 @@ class PostView extends React.Component<IPostViewProps, {}> {
   }
 
   render() {
-    const { isLoading, post } = this.props
+    const { currentUser, isLoading, post } = this.props
 
     if (isLoading || !post) {
       return <div>Loading</div>
@@ -46,7 +48,7 @@ class PostView extends React.Component<IPostViewProps, {}> {
             <p>{post.content}</p>
           </div>
           <div className="comment-section">
-            <CommentList comments={post.comments} />
+            <CommentList currentUser={currentUser} comments={post.comments} />
           </div>
         </div>
       )
@@ -56,8 +58,10 @@ class PostView extends React.Component<IPostViewProps, {}> {
 
 const mapStateToProps = (state: IRootReducer) => {
   const { post, isLoading } = state.post
+  const { currentUser } = state.auth
 
   return {
+    currentUser,
     isLoading,
     post,
   }

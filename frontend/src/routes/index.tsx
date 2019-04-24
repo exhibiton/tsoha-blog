@@ -2,6 +2,7 @@
 import { getToken } from '../api/utils/authorization-token'
 import AuthLayout from '../layouts/AuthLayout'
 import CoreLayout from '../layouts/PageLayout'
+import CommentView from './Comment'
 import Home from './Home'
 import PostView from './Post'
 import SignIn from './SignIn'
@@ -23,7 +24,7 @@ function redirectToHome(nextState: any, replace: any) {
     PlainRoute objects to build route definitions.   */
 export const createRoutes = (store: any) => [
   {
-    childRoutes: [PostView, SignIn],
+    childRoutes: [PostView, SignIn, CommentView],
     component: CoreLayout,
     indexRoute: Home,
     onEnter: (nextState: any, replace: any) => redirectToLogin(nextState, replace),

@@ -3,3 +3,25 @@
   background-color: #ffffff;
   padding: 25px;
 }
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.control-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  margin-right: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: #0e7dff;
+  border-radius: 20px;
+  color: white;
+}

@@ -1,3 +1,4 @@
+import json
 from flask import jsonify, request, make_response
 from application import db
 from application.controllers import api
@@ -92,14 +93,17 @@ def comment_update(pk):
         comment = Comment.find_comments_by_comment_id(pk)
         if comment:
             if comment.user_id == current_user['id']:
-                data = request.args
-                if data['title']:
-                    content = data['title']
+                data = json.loads(request.data)
+                if data['content']:
+                    content = data['content']
                     comment.content = content
                 db.session.commit()
+                comment_schema = CommentSchema()
+                comment_result = comment_schema.dump(comment)
                 response_object = {
                     'status': 'success',
                     'message': 'Successfully updated comment',
+                    'comment': comment_result[0]
                 }
                 return make_response(jsonify(response_object)), 200
             else:

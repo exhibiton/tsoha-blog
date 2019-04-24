@@ -1,5 +1,6 @@
 import { AnyAction, combineReducers, Reducer } from 'redux'
 import { reducer as reduxFormReducer } from 'redux-form'
+import CommentReducer from '../routes/Comment/modules/CommentEditReducer'
 import HomeReducer from '../routes/Home/modules/HomeReducer'
 import PostReducer from '../routes/Post/modules/PostReducer'
 import { IRootReducer } from '../types/redux/rootReducerTypes'
@@ -8,6 +9,7 @@ import locationReducer from './reducers/location-reducer'
 
 const makeRootReducer = combineReducers({
   auth: AuthReducer,
+  comment: CommentReducer,
   form: reduxFormReducer,
   home: HomeReducer,
   location: locationReducer,

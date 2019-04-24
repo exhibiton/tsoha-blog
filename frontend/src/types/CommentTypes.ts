@@ -10,3 +10,7 @@ export interface IComment {
     username: string
   }
 }
+
+export interface ICommentUpdateData {
+  content: string
+}

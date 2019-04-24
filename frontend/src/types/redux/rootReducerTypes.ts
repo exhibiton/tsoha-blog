@@ -1,3 +1,4 @@
+import { ICommentState } from '../../routes/Comment/modules/CommentEditReducer'
 import { IHomeState } from '../../routes/Home/modules/HomeReducer'
 import { IPostState } from '../../routes/Post/modules/PostReducer'
 import { IAuthState } from '../../store/reducers/auth-reducer'
@@ -8,6 +9,7 @@ export interface IRootReducer {
   location: ILocationState
   post: IPostState
   auth: IAuthState
+  comment: ICommentState
 }
 
 export interface IAction {

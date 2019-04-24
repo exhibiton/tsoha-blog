@@ -1,0 +1,18 @@
+.comment-section-container {
+  margin-left: 200px;
+  margin-top: 100px;
+  margin-right: 200px;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-label {
+  margin-bottom: 10px;
+}
+
+.comment-field {
+  width: 600px;
+  height: 200px;
+}
