@@ -23,7 +23,7 @@ const LoginForm: React.SFC<InjectedFormProps> = props => {
         </div>
         <div className="mvs">
           <button className="submit-button" type="submit" disabled={submitting}>
-            Log In
+            Submit
           </button>
         </div>
       </form>

@@ -12,6 +12,7 @@ import {
   loginSuccess,
   onLogout,
 } from '../actions/auth-actions'
+import { signUpFailed, signUpLoading, signUpSuccess } from '../actions/auth-actions'
 import apiEndpoints from '../config/apis'
 import { ISignInData } from '../types/UserTypes'
 import { destroyToken, setAuthorizationToken } from './utils/authorization-token'
@@ -35,6 +36,28 @@ export const login = (data: ISignInData) => async (dispatch: Dispatch = null as 
     .catch(error => {
       toastr.error(error.response.data.errors)
       dispatch(loginFail())
+    })
+}
+
+export const signUp = (data: ISignInData) => async (dispatch: Dispatch = null as any) => {
+  dispatch(signUpLoading())
+  return axios({
+    method: 'POST',
+    params: data,
+    url: `${apiEndpoints.api}/users/sign_up`,
+  })
+    .then(res => {
+      const token = res.data.auth_token
+
+      setAuthorizationToken(token)
+      const user = jwt.decode(token)
+
+      dispatch(signUpSuccess(user))
+      browserHistory.push('/')
+    })
+    .catch(error => {
+      toastr.error(error.response.data.errors)
+      dispatch(signUpFailed())
     })
 }
 

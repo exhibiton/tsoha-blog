@@ -38,6 +38,9 @@ class Header extends React.Component<IHeaderProps, {}> {
           <div className="login-button">
             <Link to="/sign_in">LOG IN</Link>
           </div>
+          <div className="signup-button">
+            <Link to="/sign_up">Sign Up</Link>
+          </div>
         </div>
       )
     }

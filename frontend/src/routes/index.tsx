@@ -10,6 +10,7 @@ import Home from './Home'
 import PostView from './Post'
 import AllPosts from './Post/routes/AllPosts'
 import SignIn from './SignIn'
+import SignUp from './SignUp'
 
 function redirectToLogin(nextState: any, replace: any) {
   if (!getToken() && nextState.location.pathname === '/users') {
@@ -23,7 +24,7 @@ function redirectToLogin(nextState: any, replace: any) {
     PlainRoute objects to build route definitions.   */
 export const createRoutes = (store: IRootReducer) => [
   {
-    childRoutes: [AdminSignIn, PostView, SignIn, CommentView, AddPost, EditPost, AllPosts],
+    childRoutes: [AdminSignIn, PostView, SignIn, CommentView, AddPost, EditPost, AllPosts, SignUp],
     component: CoreLayout,
     indexRoute: Home,
     onEnter: (nextState: any, replace: any) => redirectToLogin(nextState, replace),

@@ -8,6 +8,7 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
 } from '../../actions/auth-actions'
+import { SIGN_UP_FAILED, SIGN_UP_FULFILLED, SIGN_UP_LOADING } from '../../actions/auth-actions'
 import { IAction } from '../../types/redux/rootReducerTypes'
 import { IUser } from '../../types/UserTypes'
 
@@ -27,6 +28,7 @@ export default function AuthReducer(state: IAuthState = initialState, action: IA
   switch (action.type) {
     case ADMIN_LOGIN_SUCCESS:
     case LOGIN_SUCCESS:
+    case SIGN_UP_FULFILLED:
       return {
         ...state,
         currentUser: action.payload.identity,
@@ -35,6 +37,7 @@ export default function AuthReducer(state: IAuthState = initialState, action: IA
       }
     case ADMIN_LOGIN_LOADING:
     case LOGIN_LOADING:
+    case SIGN_UP_LOADING:
       return {
         ...state,
         isSigningIn: true,
@@ -47,6 +50,7 @@ export default function AuthReducer(state: IAuthState = initialState, action: IA
         isSignedIn: false,
       }
     case ADMIN_LOGIN_FAIL:
+    case SIGN_UP_FAILED:
     case LOGIN_FAIL:
       return {
         ...state,
