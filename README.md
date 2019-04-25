@@ -1,25 +1,33 @@
-# Tietokantasovellus - Blogi
+# Softium Blog
 
-Tietokantasovellukseni tulee Medium-palvelun muotoinen klooni blogista. Kyseessä ei tule olemaan palvelu, jossa jokainen voi postaa oman bloginsa, vaan yksittäinen blogi samaan tyyliin.
+This is a blog application for TSOHA-course at University of Helsinki. Admin's can create posts and readers can read them, sign up and comment on them. Very basic, medium-like in design and functionality.
 
-## Ohjelman rakenne
+## Application Structure
 
-Ohjelma tulee käsittämään kaksi osaa. Projektin tietokanta/serveri-puolta ohjaa Flaskilla toteutettu Python-backend. Backend keskustelee (todennäköisesti) Herokussa olevan kautta frontendin kanssa. Frontend-puoli, ei ole toteutettu Flaskin avulla, vaan erillisenä Typescript-applikaationa. Applikaatio toteutetaan fraktaalisena projekti-rakenteena, jota itse suosin. State-managementista projektissa vastaa tyypitetty Redux-tietovarasto. Kyseinen saattaa kuulostaa pieneltä overkilliltä, mutta totesin tämän hyväksi ajaksi päivittää oma rakentamani react/redux-boilerplaten tyypitetyksi typescript-versioksi.
+The application backend is implemented as a JSON REST API with Flask. The backend is deployed to Heroku at [https://tsoha.herokuapp.com](https://tsoha.herokuapp.com).
 
-Kyseisen projektirakenteen takia, ensimmäisellä viikolla oli vähän aikarajoitteita ehtiä tehdä kaikkia formeja päivittää tietoa valmiiksi. Vahva pohja on nyt tehty ja siitä on hyvä jatkaa ensi viikolle projektia.
+The application's frontend is implemented in a CRA-based Typescript application with React and Redux. The project structure is mainly fractal, but due to the time restrictions of this project and the lack of focus on the frontend from the course requirements, it has some shortcomings and shortcuts that were taken to save time for the course. The frontend is deployed at [https://tsoha-react-app.exhibiton.now.sh](https://tsoha-react-app.exhibiton.now.sh).
 
-Päivitän varmaan ensi viikosta lähtien projektin dokumentaation englanniksi, sillä kommentoin koodia aina englanniksi, joten pysyy yhtenäinen kieli.
+Working [demo](https://tsoha-react-app.exhibiton.now.sh) of the deployed application.
 
-## Lista ominaisuuksista:
-- Pääsivu kaikista blogi-postauksista
-- Kirjautuminen sisään, jotta voi lisätä blogi-postauksia (admin)
-- Kirjautuminen sisään, jotta voi kommentoida blogipostauksiin (user)
-- Blogipostauksen kirjoitus
-- Blogipostauksen muokkaaminen
-- Blogipostauksen lukeminen
-- Blogipostauksen kommentointi
-- Blogipostauksen poistaminen
-- Blogipostauksen hakeminen, jollain hakukriteereillä
-- Blogipostauksien kategorisointi
-- Blogipostausten sorttaaminen kategorian tai ajan perusteella
-- Jos ehtii niin jotain raportteja aktiivisimmin kommentoituja postauksia / aktiivisimpia käyttäjiä postaamaan / aktiivisimmiten kommentoidut kategoriat ym..
+### User Credentials
+
+Admin secret login address: [https://tsoha-react-app.exhibiton.now.sh/admin/sign_in](https://tsoha-react-app.exhibiton.now.sh/admin/sign_in)
+
+Login: `test@test.com`
+
+Password: `12345678`
+
+User login address: [https://tsoha-react-app.exhibiton.now.sh/sign_in](https://tsoha-react-app.exhibiton.now.sh/sign_in)
+
+Email: `user@user.com`
+
+Password: `12345678`
+
+## Documentation
+
+- [Use guide](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/user_guide.md)
+- [Retrictions and missing features](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/restrictions.md)
+- [Installation guide](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/installation_guide.md)
+- [Database structure](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/database.md)
+- [Use cases & SQL-queries](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/use_cases.md)
