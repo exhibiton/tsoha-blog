@@ -24,7 +24,7 @@ class HomeView extends React.Component<IHomeViewProps, {}> {
     const { isLoading, posts } = this.props
 
     if (isLoading) {
-      return <div>Loading</div>
+      return <div />
     }
 
     let lastPosts

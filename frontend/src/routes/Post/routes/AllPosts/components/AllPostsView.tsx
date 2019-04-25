@@ -23,7 +23,7 @@ class AllPostsView extends React.Component<IAllPostsProps, {}> {
     const { isLoading, posts } = this.props
 
     if (isLoading) {
-      return <div>Loading</div>
+      return <div />
     }
 
     return (
