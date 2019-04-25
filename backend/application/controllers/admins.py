@@ -1,9 +1,10 @@
 from flask import make_response, jsonify, request
 from application.controllers import api
 from application.models.admin import Admin
+from application.models.comment import Comment
 from application import bcrypt
 from flask_jwt_extended import (
-    create_access_token
+    create_access_token, jwt_required, get_jwt_identity
 )
 
 
@@ -52,3 +53,23 @@ def authenticate():
             'error': ','.join(e.args)
         }
         return make_response(jsonify(response_object)), 401
+
+
+@api.route('/admins/comment_stats', methods=['GET'])
+@jwt_required
+def comment_stats():
+    try:
+        stats = Comment.find_most_commenting_users()
+        response_object = {
+            'status': 'success',
+            'message': 'Successfully got your stats',
+            'stats': stats
+        }
+        return make_response(jsonify(response_object)), 200
+    except Exception as e:
+        response_object = {
+            'status': 'fail',
+            'message': 'Could not get your stats',
+            'error': ','.join(e.args)
+        }
+        return make_response(jsonify(response_object)), 500

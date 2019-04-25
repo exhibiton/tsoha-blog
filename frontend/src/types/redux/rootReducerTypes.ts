@@ -1,3 +1,4 @@
+import { IStatsState } from 'src/routes/Admin/routes/CommentStats/modules/CommentStatsDuck'
 import { ICommentState } from '../../routes/Comment/modules/CommentEditReducer'
 import { IHomeState } from '../../routes/Home/modules/HomeReducer'
 import { IAuthState } from '../../store/reducers/auth-reducer'
@@ -10,6 +11,7 @@ export interface IRootReducer {
   post: IPostState
   auth: IAuthState
   comment: ICommentState
+  stats: IStatsState
 }
 
 export interface IAction {

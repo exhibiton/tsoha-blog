@@ -2,6 +2,38 @@
 
 This page lays out different use cases for the application and their SQL-queries that the application is using.
 
+## Aggregate query
+
+There is a controller-function for admins that is `comment_stats()`. This function returns the users who have commented the most and the amount of comments they have done in a descending order.
+
+```
+def find_most_commenting_users():
+    stmt = text("SELECT users.username,"
+                " COUNT(comments.id) as comment_count"
+                " FROM Users"
+                " JOIN comments ON comments.user_id = users.id "
+                "GROUP BY users.id "
+                "ORDER BY comment_count DESC")
+    res = db.engine.execute(stmt)
+    response = []
+    for row in res:
+        response.append({"username": row[0], "stats": row[1]})
+    return response
+```
+
+```sql
+SELECT
+  users.username,
+  COUNT(comments.id) as comment_count
+FROM
+  Users
+  JOIN comments ON comments.user_id = users.id
+GROUP BY
+  users.id
+ORDER BY
+  comment_count DESC;
+```
+
 ## Models:
 
 ### Admin:

@@ -4,6 +4,7 @@ import CoreLayout from '../layouts/PageLayout'
 import { IRootReducer } from '../types/redux/rootReducerTypes'
 import AdminSignIn from './Admin'
 import AddPost from './Admin/routes/AddPost'
+import Stats from './Admin/routes/CommentStats'
 import EditPost from './Admin/routes/EditPost'
 import CommentView from './Comment'
 import Home from './Home'
@@ -24,7 +25,7 @@ function redirectToLogin(nextState: any, replace: any) {
     PlainRoute objects to build route definitions.   */
 export const createRoutes = (store: IRootReducer) => [
   {
-    childRoutes: [AdminSignIn, PostView, SignIn, CommentView, AddPost, EditPost, AllPosts, SignUp],
+    childRoutes: [AdminSignIn, PostView, SignIn, CommentView, AddPost, EditPost, AllPosts, SignUp, Stats],
     component: CoreLayout,
     indexRoute: Home,
     onEnter: (nextState: any, replace: any) => redirectToLogin(nextState, replace),

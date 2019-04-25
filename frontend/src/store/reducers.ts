@@ -1,5 +1,6 @@
 import { AnyAction, combineReducers, Reducer } from 'redux'
 import { reducer as reduxFormReducer } from 'redux-form'
+import StatsReducer from '../routes/Admin/routes/CommentStats/modules/CommentStatsDuck'
 import CommentReducer from '../routes/Comment/modules/CommentEditReducer'
 import HomeReducer from '../routes/Home/modules/HomeReducer'
 import { IRootReducer } from '../types/redux/rootReducerTypes'
@@ -14,6 +15,7 @@ const makeRootReducer = combineReducers({
   home: HomeReducer,
   location: locationReducer,
   post: PostReducer,
+  stats: StatsReducer,
 }) as Reducer<IRootReducer>
 
 export default function mainReducer(state: IRootReducer, action: AnyAction): IRootReducer {
