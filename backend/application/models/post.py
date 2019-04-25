@@ -22,6 +22,9 @@ class Post(db.Model):
         p.title = p.title.split("`")[idx]
         return p
 
+    def __lt__(self, other):
+        return self.id < other.id
+
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()

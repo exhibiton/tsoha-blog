@@ -71,6 +71,7 @@ export const updatePost = (post: IPost) => async (dispatch: Dispatch = null as a
       url: `${apiEndpoints.api}/posts/${post.id}`,
     }).then(res => {
       dispatch(updatePostFulfilled(res.data.post))
+      browserHistory.push(`/posts/${res.data.post.id}`)
     })
   } catch (error) {
     dispatch(updatePostFailed())
@@ -86,6 +87,7 @@ export const deletePost = (postId: string) => async (dispatch: Dispatch = null a
       url: `${apiEndpoints.api}/posts/${postId}`,
     }).then(() => {
       dispatch(deletePostFulfilled())
+      browserHistory.push('/')
     })
   } catch (error) {
     dispatch(deletePostFailed())

@@ -13,8 +13,9 @@ from flask_jwt_extended import (
 @api.route('/posts', methods=['GET'])
 def post_index():
     posts = Post.query.all()
+    sorted_posts = sorted(posts, key=lambda post:post.id, reverse=True)
     post_schema = PostSchema(many=True)
-    result = post_schema.dump(posts)
+    result = post_schema.dump(sorted_posts)
     # I have no idea why Marshmallow is adding an empty dict into the dump.
     return jsonify(result[0])
 

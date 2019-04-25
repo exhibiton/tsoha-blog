@@ -6,7 +6,7 @@ const AddPostForm: React.SFC<InjectedFormProps> = props => {
   const { error, handleSubmit, submitting } = props
 
   return (
-    <div className="comment-section-container">
+    <div className="post-section-container">
       <form onSubmit={handleSubmit}>
         {error && (
           <div className="mb-3 color-red">

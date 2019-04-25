@@ -20,7 +20,9 @@ const CommentList: React.SFC<ICommentListProps> = props => {
         {comments.map((comment, i) => (
           <Comment currentUser={currentUser} comment={comment} key={i} />
         ))}
-        {currentUser && !isEmpty(currentUser) && <AddComment currentUser={currentUser} />}
+        {currentUser && !isEmpty(currentUser) && !currentUser.isAdmin && (
+          <AddComment currentUser={currentUser} />
+        )}
       </div>
     )
   }

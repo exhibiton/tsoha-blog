@@ -1,14 +1,17 @@
+// tslint:disable: jsx-no-lambda
 import React from 'react'
 import { connect } from 'react-redux'
 import { ILocationState } from 'src/store/reducers/location-reducer'
 import { IRootReducer } from 'src/types/redux/rootReducerTypes'
 import { IUser } from 'src/types/UserTypes'
-import { getPost, updatePost } from '../../../../../api/posts-api'
+import { deletePost, getPost, updatePost } from '../../../../../api/posts-api'
 import { IPost } from '../../../../../types/PostTypes'
 import AddPostForm from '../../AddPost/components/AddPostForm'
+import './EditPost.css'
 
 interface IEditPostProps {
   currentUser?: IUser
+  deletePost: (postId: string) => void
   getPost: (postId: string) => void
   isLoading: boolean
   post: IPost
@@ -30,7 +33,10 @@ class EditPost extends React.Component<IEditPostProps, {}> {
     const { post } = this.props
 
     return (
-      <div>
+      <div className="edit-post-container">
+        <button className="delete-button" onClick={() => this.props.deletePost(`${post.id}`)}>
+          Delete Post
+        </button>
         <AddPostForm enableReinitialize={true} onSubmit={this.handleSubmit} initialValues={post} />
       </div>
     )
@@ -49,6 +55,7 @@ const mapStateToProps = (state: IRootReducer) => {
 }
 
 const mapDispatchToProps = {
+  deletePost,
   getPost,
   updatePost,
 }

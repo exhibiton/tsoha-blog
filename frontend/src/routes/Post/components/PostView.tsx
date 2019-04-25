@@ -33,6 +33,9 @@ class PostView extends React.Component<IPostViewProps, {}> {
   render() {
     const { comments, currentUser, isLoading, post } = this.props
 
+    // Found a react-router bug printing 1%C to links in this case, workaround:
+    const editPostPath = `admin/posts/${post.id}/edit`
+
     if (isLoading || !post) {
       return <div>Loading</div>
     } else {
@@ -43,9 +46,7 @@ class PostView extends React.Component<IPostViewProps, {}> {
               <img height="40" width="40" src={backArrow} />
             </Link>
             <div className="edit-post">
-              {currentUser && !isEmpty(currentUser) && (
-                <Link to={`/admin/posts/${post.id}/edit`}>Edit Post</Link>
-              )}
+              {currentUser && !isEmpty(currentUser) && <Link to={'/' + editPostPath}>Edit Post</Link>}
             </div>
           </div>
           <div className="post-title">{post.title}</div>
