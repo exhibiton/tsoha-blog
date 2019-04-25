@@ -1,14 +1,15 @@
+import { isEmpty } from 'lodash'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { IPost } from 'src/types/PostTypes'
+import { getPost } from '../../../api/posts-api'
 import backArrow from '../../../assets/back-arrow.svg'
 import postImg from '../../../assets/firstblog.jpg'
 import { ILocationState } from '../../../store/reducers/location-reducer'
 import { IComment } from '../../../types/CommentTypes'
 import { IRootReducer } from '../../../types/redux/rootReducerTypes'
 import { IUser } from '../../../types/UserTypes'
-import { getPost } from '../modules/PostApi'
 import CommentList from './CommentList'
 import './PostView.css'
 
@@ -41,8 +42,14 @@ class PostView extends React.Component<IPostViewProps, {}> {
             <Link to="/">
               <img height="40" width="40" src={backArrow} />
             </Link>
+            <div className="edit-post">
+              {currentUser && !isEmpty(currentUser) && (
+                <Link to={`/admin/posts/${post.id}/edit`}>Edit Post</Link>
+              )}
+            </div>
           </div>
           <div className="post-title">{post.title}</div>
+
           <div className="image-container">
             <img width="945" height="532" src={postImg} />
           </div>

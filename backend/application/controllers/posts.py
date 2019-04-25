@@ -1,3 +1,4 @@
+import json
 from flask import jsonify, make_response, request
 from application.controllers import api
 from application.models.post import Post
@@ -23,7 +24,7 @@ def post_index():
 def post_create():
     current_admin = get_jwt_identity()
 
-    data = request.args
+    data = json.loads(request.data)
     title = data['title']
     content = data['content']
     admin_id = current_admin['id']
@@ -38,10 +39,13 @@ def post_create():
         db.session.add(post)
         db.session.commit()
 
+        post_schema = PostSchema()
+        post_result = post_schema.dump(post)
+
         response_object = {
             'status': 'success',
             'message': 'Successfully created a Post',
-            'post_id': post.id
+            'post': post_result[0]
         }
         return make_response(jsonify(response_object)), 201
     except Exception as e:
@@ -70,22 +74,36 @@ def post_get(pk):
 @api.route('/posts/<pk>', methods=['PUT'])
 @jwt_required
 def post_update(pk):
+    current_admin = get_jwt_identity()
+
     try:
         post = Post.find_post_by_id(pk)
         if post:
-            data = request.args
-            if data['title']:
-                title = data['title']
-                post.title = title
-            if data['content']:
-                content = data['content']
-                post.content = content
-            db.session.commit()
-            response_object = {
-                'status': 'success',
-                'message': 'Successfully updated post',
-            }
-            return make_response(jsonify(response_object)), 200
+            if post.admin_id == current_admin['id']:
+                data = json.loads(request.data)
+                if data['title']:
+                    title = data['title']
+                    post.title = title
+                if data['content']:
+                    content = data['content']
+                    post.content = content
+                db.session.commit()
+
+                post_schema = PostSchema()
+                post_result = post_schema.dump(post)
+
+                response_object = {
+                    'status': 'success',
+                    'message': 'Successfully updated post',
+                    'post': post_result[0]
+                }
+                return make_response(jsonify(response_object)), 200
+            else:
+                response_object = {
+                    'status': 'fail',
+                    'message': 'Not authorized to edit this post',
+                }
+                return make_response(jsonify(response_object)), 403
         else:
             response_object = {
                 'status': 'fail',
@@ -104,16 +122,24 @@ def post_update(pk):
 @api.route('/posts/<pk>', methods=['DELETE'])
 @jwt_required
 def post_delete(pk):
+    current_admin = get_jwt_identity()
     try:
         post = Post.find_post_by_id(pk)
         if post:
-            db.session.delete(post)
-            db.session.commit()
-            response_object = {
-                'status': 'success',
-                'message': 'Successfully deleted post',
-            }
-            return make_response(jsonify(response_object)), 200
+            if post.admin_id == current_admin['id']:
+                db.session.delete(post)
+                db.session.commit()
+                response_object = {
+                    'status': 'success',
+                    'message': 'Successfully deleted post',
+                }
+                return make_response(jsonify(response_object)), 200
+            else:
+                response_object = {
+                    'status': 'fail',
+                    'message': 'Not authorized to delete this post',
+                }
+                return make_response(jsonify(response_object)), 403
         else:
             response_object = {
                 'status': 'fail',

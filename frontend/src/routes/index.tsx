@@ -1,7 +1,9 @@
 // We only need to import the modules necessary for initial render
 import { getToken } from '../api/utils/authorization-token'
 import CoreLayout from '../layouts/PageLayout'
-import AdminSignIn from './AdminSignIn'
+import { IRootReducer } from '../types/redux/rootReducerTypes'
+import AdminSignIn from './Admin'
+import AddPost from './Admin/routes/AddPost'
 import CommentView from './Comment'
 import Home from './Home'
 import PostView from './Post'
@@ -17,9 +19,9 @@ function redirectToLogin(nextState: any, replace: any) {
 }
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
-export const createRoutes = (store: any) => [
+export const createRoutes = (store: IRootReducer) => [
   {
-    childRoutes: [AdminSignIn, PostView, SignIn, CommentView],
+    childRoutes: [AdminSignIn, PostView, SignIn, CommentView, AddPost],
     component: CoreLayout,
     indexRoute: Home,
     onEnter: (nextState: any, replace: any) => redirectToLogin(nextState, replace),

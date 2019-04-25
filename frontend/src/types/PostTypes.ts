@@ -13,3 +13,8 @@ export interface IPost {
   id: number
   title: string
 }
+
+export interface IAddPostData {
+  title: string
+  content: string
+}

@@ -22,7 +22,7 @@ class Header extends React.Component<IHeaderProps, {}> {
           <Link to="/">
             <img src={logo} />
           </Link>
-          {user.isAdmin && <div>Add Post</div>}
+          {user.isAdmin && <Link to="/admin/posts/new">Create Post</Link>}
           <div className="">Hi {user.name}</div>
           <a href="/" onClick={this.props.logout}>
             Logout

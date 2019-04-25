@@ -1,0 +1,24 @@
+.title-field {
+  width: 100%;
+  height: 30px;
+  font-size: 18px;
+  padding: 5px;
+  font-family: Geometria, sans-serif;
+}
+
+.content-field {
+  width: 100%;
+  height: 400px;
+  font-size: 16px;
+  padding: 5px;
+  font-family: Geometria, sans-serif;
+}
+
+.add-post-form {
+  width: 600px;
+}
+
+.content-label {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
