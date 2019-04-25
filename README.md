@@ -29,5 +29,5 @@ Password: `12345678`
 - [Use guide](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/user_guide.md)
 - [Retrictions and missing features](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/restrictions.md)
 - [Installation guide](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/installation_guide.md)
-- [Database structure](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/database.md)
+- [Database structure](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/Database.md)
 - [Use cases & SQL-queries](https://github.com/exhibiton/tsoha-blog/tree/master/dokumentaatio/use_cases.md)
