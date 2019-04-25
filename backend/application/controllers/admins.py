@@ -7,7 +7,7 @@ from flask_jwt_extended import (
 )
 
 
-@api.route('/admins/authenticate', methods=['POST'])
+@api.route('/admins/sign_in', methods=['POST'])
 def authenticate():
     data = request.args
     email = data['email']

@@ -1,3 +1,4 @@
+import { isEmpty } from 'lodash'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
@@ -8,19 +9,21 @@ import { IUser } from '../types/UserTypes'
 import './Header.css'
 
 interface IHeaderProps {
-  user?: IUser
+  isAdmin: boolean
   logout: () => void
+  user?: IUser
 }
 
 class Header extends React.Component<IHeaderProps, {}> {
   render() {
-    const { user } = this.props
-    if (user) {
+    const { user, isAdmin } = this.props
+    if (user && !isEmpty(user)) {
       return (
         <div className="container">
           <Link to="/">
             <img src={logo} />
           </Link>
+          {isAdmin && <div>Add Post</div>}
           <div className="">Hi {user.name}</div>
           <a href="/" onClick={this.props.logout}>
             Logout
@@ -43,9 +46,10 @@ class Header extends React.Component<IHeaderProps, {}> {
 }
 
 const mapStateToProps = (state: IRootReducer) => {
-  const { currentUser } = state.auth
+  const { currentUser, userIsAdmin } = state.auth
 
   return {
+    isAdmin: userIsAdmin,
     user: currentUser,
   }
 }

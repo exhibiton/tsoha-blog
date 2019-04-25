@@ -1,8 +1,7 @@
 import React from 'react'
 import { Field, InjectedFormProps, reduxForm } from 'redux-form'
-import './LoginForm.css'
 
-const LoginForm: React.SFC<InjectedFormProps> = props => {
+const AdminLoginForm: React.SFC<InjectedFormProps> = props => {
   const { error, handleSubmit, submitting } = props
 
   return (
@@ -32,5 +31,5 @@ const LoginForm: React.SFC<InjectedFormProps> = props => {
 }
 
 export default reduxForm({
-  form: 'loginForm',
-})(LoginForm)
+  form: 'adminLoginForm',
+})(AdminLoginForm)
