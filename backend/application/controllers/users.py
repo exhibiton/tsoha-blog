@@ -21,7 +21,8 @@ def sign_in():
             identity = {
                 'email': user.email,
                 'name': user.username,
-                'id': user.id
+                'id': user.id,
+                'isAdmin': False
             }
             access_token = create_access_token(identity=identity)
 

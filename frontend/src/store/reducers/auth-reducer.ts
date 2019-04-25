@@ -15,26 +15,17 @@ export interface IAuthState {
   currentUser: IUser
   isSignedIn: boolean
   isSigningIn: boolean
-  userIsAdmin: boolean
 }
 
 const initialState: IAuthState = {
   currentUser: null,
   isSignedIn: false,
   isSigningIn: true,
-  userIsAdmin: false,
 }
 
 export default function AuthReducer(state: IAuthState = initialState, action: IAction = {}) {
   switch (action.type) {
     case ADMIN_LOGIN_SUCCESS:
-      return {
-        ...state,
-        currentUser: action.payload.identity,
-        isSignedIn: true,
-        isSigningIn: false,
-        userIsAdmin: true,
-      }
     case LOGIN_SUCCESS:
       return {
         ...state,
@@ -54,7 +45,6 @@ export default function AuthReducer(state: IAuthState = initialState, action: IA
         ...state,
         currentUser: {},
         isSignedIn: false,
-        userIsAdmin: false,
       }
     case ADMIN_LOGIN_FAIL:
     case LOGIN_FAIL:

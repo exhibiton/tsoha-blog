@@ -21,7 +21,8 @@ def authenticate():
             identity = {
                 'email': admin.email,
                 'name': admin.username,
-                'id': admin.id
+                'id': admin.id,
+                'isAdmin': True
             }
             access_token = create_access_token(identity=identity)
 
