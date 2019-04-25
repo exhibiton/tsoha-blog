@@ -5,7 +5,7 @@ const apiEndpoints = {
     api: 'http://localhost:5000',
   },
   production: {
-    api: 'https://api.heroku.com',
+    api: 'https://tsoha.herokuapp.com',
   },
 }
 
