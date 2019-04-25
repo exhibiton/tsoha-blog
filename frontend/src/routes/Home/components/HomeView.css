@@ -159,6 +159,11 @@
   letter-spacing: 0.3px;
   color: #222645;
   text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 20px;
 }
 
 .read-more-2 {
@@ -193,4 +198,11 @@ a:hover {
 a:active {
   text-decoration: none;
   color: #222645;
+}
+
+.other-posts {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 20px;
+  font-weight: bold;
 }

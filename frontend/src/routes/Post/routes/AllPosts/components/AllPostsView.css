@@ -1,0 +1,27 @@
+.all-posts-container {
+  margin-top: 95px;
+  margin-bottom: 60px;
+  margin-left: 17.857vw;
+  margin-right: 17.857vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.compact-post-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.compact-section {
+  background-color: white;
+  box-shadow: 0 10px 40px 0 rgba(17, 58, 126, 0.05);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.arrow-container {
+  margin-right: 50px;
+}

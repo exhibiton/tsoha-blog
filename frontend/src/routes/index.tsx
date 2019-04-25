@@ -8,6 +8,7 @@ import EditPost from './Admin/routes/EditPost'
 import CommentView from './Comment'
 import Home from './Home'
 import PostView from './Post'
+import AllPosts from './Post/routes/AllPosts'
 import SignIn from './SignIn'
 
 function redirectToLogin(nextState: any, replace: any) {
@@ -22,7 +23,7 @@ function redirectToLogin(nextState: any, replace: any) {
     PlainRoute objects to build route definitions.   */
 export const createRoutes = (store: IRootReducer) => [
   {
-    childRoutes: [AdminSignIn, PostView, SignIn, CommentView, AddPost, EditPost],
+    childRoutes: [AdminSignIn, PostView, SignIn, CommentView, AddPost, EditPost, AllPosts],
     component: CoreLayout,
     indexRoute: Home,
     onEnter: (nextState: any, replace: any) => redirectToLogin(nextState, replace),
