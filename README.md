@@ -8,6 +8,8 @@ The application backend is implemented as a JSON REST API with Flask. The backen
 
 The application's frontend is implemented in a CRA-based Typescript application with React and Redux. The project structure is mainly fractal, but due to the time restrictions of this project and the lack of focus on the frontend from the course requirements, it has some shortcomings and shortcuts that were taken to save time for the course. The frontend is deployed at [https://tsoha-react-app.exhibiton.now.sh](https://tsoha-react-app.exhibiton.now.sh).
 
+Application styling uses vanilla CSS combined with Flexbox for layouting with some Viewport-width adjusting.
+
 Working [demo](https://tsoha-react-app.exhibiton.now.sh) of the deployed application.
 
 ### User Credentials
