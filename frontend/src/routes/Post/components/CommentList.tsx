@@ -12,7 +12,7 @@ interface ICommentListProps {
 const CommentList: React.SFC<ICommentListProps> = props => {
   const { comments, currentUser } = props
 
-  if (isEmpty(comments)) {
+  if (isEmpty(comments) && !currentUser.isAdmin) {
     return <AddComment currentUser={currentUser} />
   } else {
     return (
@@ -26,6 +26,8 @@ const CommentList: React.SFC<ICommentListProps> = props => {
       </div>
     )
   }
+
+  return <div />
 }
 
 export default CommentList

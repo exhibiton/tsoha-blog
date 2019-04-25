@@ -1,9 +1,6 @@
 import { IComment } from '../../../types/CommentTypes'
 import { IAction } from '../../../types/redux/rootReducerTypes'
 import {
-  DELETE_COMMENT_FAILED,
-  DELETE_COMMENT_FULFILLED,
-  DELETE_COMMENT_LOADING,
   FETCH_COMMENT_FAILED,
   FETCH_COMMENT_FULFILLED,
   FETCH_COMMENT_LOADING,
@@ -28,17 +25,13 @@ export default function CommentEditStateReducer(
 ): ICommentState {
   switch (action.type) {
     case FETCH_COMMENT_FAILED:
-    case DELETE_COMMENT_FAILED:
     case UPDATE_COMMENT_FAILED:
       return { ...state, isLoading: false }
-    case DELETE_COMMENT_FULFILLED:
-      return { ...state, isLoading: false, comment: null }
     case FETCH_COMMENT_FULFILLED:
     case UPDATE_COMMENT_FULFILLED:
       return { ...state, isLoading: false, comment: action.payload }
     case FETCH_COMMENT_LOADING:
     case UPDATE_COMMENT_LOADING:
-    case DELETE_COMMENT_LOADING:
       return { ...state, isLoading: true }
     default:
       return state

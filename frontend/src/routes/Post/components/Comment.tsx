@@ -3,14 +3,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { IUser } from 'src/types/UserTypes'
+import { deleteComment } from '../../../api/posts-api'
 import { IComment } from '../../../types/CommentTypes'
-import { deleteComment } from '../../Comment/modules/CommentEditApi'
 import './Comment.css'
 
 interface ICommentProps {
   comment: IComment
   currentUser?: IUser
-  deleteComment: (commentId: string) => void
+  deleteComment: (comment: IComment) => void
 }
 
 class Comment extends React.Component<ICommentProps, {}> {
@@ -22,11 +22,9 @@ class Comment extends React.Component<ICommentProps, {}> {
           <Link to={`/comments/${comment.id}`}>
             <div className="button">Edit</div>
           </Link>
-          <Link to="/">
-            <a onClick={() => this.props.deleteComment(`${comment.id}`)} className="button">
-              Delete
-            </a>
-          </Link>
+          <div onClick={() => this.props.deleteComment(comment)} className="button">
+            Delete
+          </div>
         </div>
       )
     }

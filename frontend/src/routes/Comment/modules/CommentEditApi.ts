@@ -4,9 +4,6 @@ import { IComment } from 'src/types/CommentTypes'
 import { getToken } from '../../../api/utils/authorization-token'
 import apiEndpoints from '../../../config/apis'
 import {
-  deleteCommentFailed,
-  deleteCommentFulfilled,
-  deleteCommentLoading,
   fetchCommentFailed,
   fetchCommentFulfilled,
   fetchCommentLoading,
@@ -46,20 +43,5 @@ export const updateComment = (comment: IComment) => async (dispatch: Dispatch = 
     })
   } catch (error) {
     dispatch(updateCommentFailed())
-  }
-}
-
-export const deleteComment = (commentId: string) => async (dispatch: Dispatch = null as any) => {
-  dispatch(deleteCommentLoading())
-  try {
-    await axios({
-      headers: { Authorization: `Bearer ${getToken()}` },
-      method: 'DELETE',
-      url: `${apiEndpoints.api}/comments/${commentId}`,
-    }).then(() => {
-      dispatch(deleteCommentFulfilled())
-    })
-  } catch (error) {
-    dispatch(deleteCommentFailed())
   }
 }

@@ -15,7 +15,9 @@ import {
   updatePostFulfilled,
   updatePostLoading,
 } from '../actions/posts-actions'
+import { deleteCommentFailed, deleteCommentFulfilled, deleteCommentLoading } from '../actions/posts-actions'
 import apiEndpoints from '../config/apis'
+import { IComment } from '../types/CommentTypes'
 import { IPost } from '../types/PostTypes'
 import { getToken } from './utils/authorization-token'
 
@@ -91,5 +93,20 @@ export const deletePost = (postId: string) => async (dispatch: Dispatch = null a
     })
   } catch (error) {
     dispatch(deletePostFailed())
+  }
+}
+
+export const deleteComment = (comment: IComment) => async (dispatch: Dispatch = null as any) => {
+  dispatch(deleteCommentLoading())
+  try {
+    await axios({
+      headers: { Authorization: `Bearer ${getToken()}` },
+      method: 'DELETE',
+      url: `${apiEndpoints.api}/comments/${comment.id}`,
+    }).then(() => {
+      dispatch(deleteCommentFulfilled(comment))
+    })
+  } catch (error) {
+    dispatch(deleteCommentFailed())
   }
 }

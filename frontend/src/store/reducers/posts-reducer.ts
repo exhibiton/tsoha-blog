@@ -14,6 +14,7 @@ import {
   UPDATE_POST_FULFILLED,
   UPDATE_POST_LOADING,
 } from '../../actions/posts-actions'
+import { DELETE_COMMENT_FULFILLED } from '../../actions/posts-actions'
 import {
   ADD_COMMENT_FAILED,
   ADD_COMMENT_FULFILLED,
@@ -57,6 +58,12 @@ export default function PostStateReducer(state: IPostState = initialState, actio
     case FETCH_POST_LOADING:
     case ADD_COMMENT_LOADING:
       return { ...state, isLoading: true }
+    case DELETE_COMMENT_FULFILLED:
+      return {
+        ...state,
+        comments: state.comments.filter(item => item !== action.payload),
+        isLoading: false,
+      }
     default:
       return state
   }
