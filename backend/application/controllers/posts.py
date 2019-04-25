@@ -2,6 +2,7 @@ import json
 from flask import jsonify, make_response, request
 from application.controllers import api
 from application.models.post import Post
+from application.models.admin import Admin
 from application.schemas.post import PostSchema
 from sqlalchemy.exc import IntegrityError
 from application import db
@@ -28,13 +29,13 @@ def post_create():
     data = json.loads(request.data)
     title = data['title']
     content = data['content']
-    admin_id = current_admin['id']
+    admin = Admin.find_admin_by_email(current_admin['email'])
 
     try:
         post = Post(
             title=title,
             content=content,
-            admin_id=admin_id
+            admin_id=admin.id
         )
 
         db.session.add(post)

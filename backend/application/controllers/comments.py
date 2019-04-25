@@ -3,6 +3,7 @@ from flask import jsonify, request, make_response
 from application import db
 from application.controllers import api
 from application.models.comment import Comment
+from application.models.user import User
 from application.schemas.comment import CommentSchema
 from flask_jwt_extended import (
     jwt_required, get_jwt_identity
@@ -58,13 +59,13 @@ def comments_create():
     data = json.loads(request.data)
     content = data['content']['content']
     post_id = data['post_id']
-    user_id = current_user['id']
+    user = User.find_user_by_email(current_user['email'])
 
     try:
         comment = Comment(
             content=content,
             post_id=post_id,
-            user_id=user_id
+            user_id=user.id
         )
 
         db.session.add(comment)

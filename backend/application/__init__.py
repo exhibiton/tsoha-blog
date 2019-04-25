@@ -9,8 +9,16 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 CORS(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////Users/jesseheikkila/Projects/tsoha/backend/tsoha-database.db"
-app.config["SQLALCHEMY_ECHO"] = True
+
+GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
+GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
+
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////Users/jesseheikkila/Projects/tsoha/backend/tsoha-database.db"
+    app.config["SQLALCHEMY_ECHO"] = True
+
 app.config["JWT_SECRET"] = os.environ.get('JWT_SECRET', default="very-secret-key")
 app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET_KEY', default="very-secret-key")
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = datetime.timedelta(days=1)
