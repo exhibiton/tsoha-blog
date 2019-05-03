@@ -6,7 +6,7 @@ This page lays out different use cases for the application and their SQL-queries
 
 There is a controller-function for admins that is `comment_stats()`. This function returns the users who have commented the most and the amount of comments they have done in a descending order.
 
-```
+```python
 def find_most_commenting_users():
     stmt = text("SELECT users.username,"
                 " COUNT(comments.id) as comment_count"
