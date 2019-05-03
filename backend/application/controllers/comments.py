@@ -86,7 +86,7 @@ def comments_create():
             'message': 'Could not create a comment',
             'error': ','.join(e.args)
         }
-        return make_response(jsonify(response_object)), 403
+        return make_response(jsonify(response_object)), 500
 
 
 @api.route('/comments/<pk>', methods=['PUT'])

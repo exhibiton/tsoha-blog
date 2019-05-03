@@ -51,7 +51,7 @@ def sign_in():
             'message': 'Could not sign in',
             'error': ','.join(e.args)
         }
-        return make_response(jsonify(response_object)), 401
+        return make_response(jsonify(response_object)), 500
 
 
 @api.route('/users/sign_up', methods=['POST'])
@@ -91,10 +91,10 @@ def sign_up():
                 'error': ','.join(e.args)
             }
 
-            return make_response(jsonify(response_object)), 401
+            return make_response(jsonify(response_object)), 500
     else:
         response_object = {
             'status': 'fail',
             'message': 'User already exists'
         }
-        return make_response(jsonify(response_object)), 202
+        return make_response(jsonify(response_object)), 400

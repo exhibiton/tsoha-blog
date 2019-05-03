@@ -56,7 +56,7 @@ def post_create():
             'message': 'Could not create a Post',
             'error': ','.join(e.args)
         }
-        return make_response(jsonify(response_object)), 403
+        return make_response(jsonify(response_object)), 500
 
 
 @api.route('/posts/<pk>', methods=['GET'])
@@ -68,9 +68,9 @@ def post_get(pk):
             post_result = post_schema.dump(post)
             return make_response(jsonify(post_result[0][0])), 200
         else:
-            return make_response({'message': 'Post could not be found.'}), 400
+            return make_response({'message': 'Post could not be found.'}), 404
     except IntegrityError:
-        return make_response({'message': 'Post could not be found.'}), 400
+        return make_response({'message': 'Post could not be found.'}), 404
 
 
 @api.route('/posts/<pk>', methods=['PUT'])
